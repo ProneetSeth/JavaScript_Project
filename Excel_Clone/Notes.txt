@@ -1,0 +1,17 @@
+
+
+
+Step - 4 :
+JS files se generated  algo ke through generated Alphabet ko append karna hai columns ke andar 
+So columns naam k ID ke andar append karna hai.
+
+
+
+
+
+
+
+
+
+steps ......................................
+

@@ -1,0 +1,246 @@
+body{
+    margin: 0;
+    /* to hide scroll bar */
+    overflow: hidden;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+.container{
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    color: black;
+    height: 100vh;
+    font-family: sans-serif;
+}
+.title{
+    background-color: #217346;
+    text-align: center;
+    font-size: 1rem;
+    padding: .5rem;
+    height: 5vh;
+    color: white;
+    font-family: sans-serif;
+}
+.menu-bar{
+    display: flex;
+    flex-direction: row; 
+    background-color: #217346;
+    height: 5vh;
+}
+.menu-bar-item{
+    background-color: #217346;
+    color: white;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    justify-content: center; /*Horizontally allign hota hai */
+    align-items: center; /*vertically allign hota hai and bina flex ke laga nehi sakte*/
+    display: flex;
+}
+
+.menu-bar-item.selected{
+    background-color: white;
+    color: #217346;
+}
+
+.menu-bar-item:hover{
+    background-color: #195534;
+    cursor: pointer;
+
+}
+.menu-bar-item.selected:hover{
+    background-color: white;
+    cursor: default;
+}
+
+.menu-icon-bar{
+    display: flex;
+    flex-direction: row;
+    height: 7vh;
+    align-items: center;
+}
+
+.menu-icon{
+    padding-left: 0.7rem;
+    padding-right: 0.7rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.menu-icon:hover{
+    background-color: lightgrey;
+    cursor: pointer;
+}
+
+.menu-selector{
+    height: 4.5vh;
+    font-size: 1.1rem;
+    margin-left: 0.7rem;
+    margin-right: 0.7rem;
+
+}
+
+#font-family{
+    width: 12vw;
+    min-width: 130px; /*Mobile view me bhi constant size rehne k liye */
+    font-family: Nato sans;
+}
+#font-size{
+    width: 3.5vw;
+    min-width: 55px;
+}
+
+/* formula bar */
+.formula-bar{
+    display: flex;
+    flex-direction: row;
+    height: 5vh;
+    justify-content: center;
+    align-items: center;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    background-color: lightgray;
+}
+
+#selected-cell{
+    width: 120px;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    height: 70%;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    background-color: #fff;
+}
+#formula-sign{
+    font-family: Vivaldi;
+    font-weight: bolder;
+    width: 40px;
+    font-size: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 70%;
+    background-color:lightgray;
+}
+#formula-input{
+    width: calc(100vw - 160px);
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    height: 70%;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    background-color: #fff;
+}
+ /* Till the above part css was done till formula bar part */
+
+ /* Now will do the cell body part  */
+.data-container{
+    display: flex;
+    height: 76vh;
+    flex-direction: row;
+    flex-wrap: wrap;
+    /* overflow: scroll;  */
+    /* for some time data container se scroll hatana jaruri hai and then make everything to 25px from 42 pixel  */
+}
+
+ #select-all{
+     width: 25px;
+     height: 25px;
+     border: 1px solid lightgray;
+ }
+
+ #columns{
+     height: 25px;
+     width: calc(100vw - 25px);
+     border: 1px solid lightgray;
+     display:flex;
+     flex-direction: row;
+     overflow: hidden;
+     
+ }
+ #rows{
+     width: 25px;
+     height: calc(76vh - 25px);
+     border: 1px solid lightgray;
+     overflow: hidden;
+ }
+ #cells{
+     /* position relative nehi doge toh y axix wali scroll bar gayab hojayegi */
+     position: relative;
+     width: calc(100vw - 25px);
+     height: calc(76vh - 25px);
+     border: 1px solid lightgray;
+     overflow: scroll;
+ }
+
+ /* making the inside cell of body  */
+ .column-name{
+    width: 100px;
+    min-width: 100px;
+    border-right: 1px solid lightgray;
+    /* border-left: 1px solid lightgray;  */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 600;
+ }
+
+ .row-name{
+     min-height: 25px;
+     height: 25px;
+     border-bottom: solid 1px lightgray;
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     font-weight: 600;
+ }
+
+
+ /* Making cell and decorating it  */
+ .cell-row{
+     display: flex;
+ }
+ .input-cell{
+     min-width: 100px;
+     width: 100px;
+     min-height: 25px;
+     height: 25px;
+     border-bottom: 1px solid lightgray;
+     border-right: 1px solid lightgray;
+     padding-left: 3px;
+     padding-right: 3px;
+     font-family: Nato Sans;
+     font-size: 14px;
+     display: flex; /*dislay flex ki wajhe se enter key kaam nehi kar raha so we can give flex direction*/ 
+     flex-direction: column;
+     justify-content: center;
+     overflow: hidden;
+     outline-color: #217346;
+ }
+
+ .input-cell.selected{
+     border: 2px solid #217346;
+ }
+
+
+ /* css code for selecting multiple cell */
+ .input-cell.top-selected{
+     border-top: none;
+ }
+ .input-cell.bottom-selected{
+     border-bottom: 1px solid lightgray;
+ }
+ .input-cell.left-selected{
+     border-left: none;
+ }
+ .input-cell.right-selected{
+     border-right: 1px solid lightgray;
+ }
+
