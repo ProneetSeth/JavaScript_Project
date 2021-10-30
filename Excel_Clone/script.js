@@ -195,29 +195,39 @@ $(".input-cell").mousemove(function(e){
     e.preventDefault(); // will prevent all the default functionalities of browser 
 
     if(e.buttons == 1){
-        $(".input-cell.selected").removeClass("selected top-selected bottom-selected left-selected right-selected");   
+        //$(".input-cell.selected").removeClass("selected top-selected bottom-selected left-selected right-selected");   
         if(!startcellSelected){
 
             let [rowId,colId] = getRowCol(this);
             startCell = {"rowId":rowId, "colId":colId};
             startcellSelected = true;
             //console.log(startCell);  /* Give Start Cell row id and col id */
-        }else{
-            let [rowId,colId] = getRowCol(this);
-            endCell = {"rowId":rowId, "colId":colId}  /* jab tak left click ko release nehi kiya hua hoga tab tak end point store hota rahega*/
-            selectAllBetweenCells(startCell,endCell); /* This function is cretaed below */
-        }
-        console.log(startCell,endCell);
+        }//else{
+        //     let [rowId,colId] = getRowCol(this);
+        //     endCell = {"rowId":rowId, "colId":colId};  /* jab tak left click ko release nehi kiya hua hoga tab tak end point store hota rahega*/
+        //     selectAllBetweenCells(startCell,endCell); /* This function is cretaed below */
+        // }
+        // console.log(startCell,endCell);
     }else{
         startcellSelected = false;
     }
 });
+
+/*Added mouse enter function coz it will help in reducing the loop done by mouse move */
+$(".input-cell").mouseenter(function(e){
+    if(e.buttons == 1){
+        let [rowId,colId] = getRowCol(this);
+        endCell = {"rowId":rowId, "colId":colId} 
+        selectAllBetweenCells(startCell,endCell); 
+    }
+})
 
 /* Now we have rowId and coldId start cell and end cell.
 here i can use 2 "for loop" concept, but before that need to find out wheather startcell is smaller or endcell. 
 coz to need to write for loop where it will loop from smaller id to larger id */
 
 function selectAllBetweenCells(start,end){
+    $(".input-cell.selected").removeClass("selected top-selected bottom-selected left-selected right-selected"); /*koi dusra select karne se pehle sabko remove kardo*/
     for(let i = Math.min(start.rowId,end.rowId); i <= Math.max(start.rowId,end.rowId); i++){
         for(let j = Math.min(start.colId,end.colId); j <= Math.max(start.colId,end.colId); j++){
             /* As already a function is written for selecting cell by name as selectCell, there need to pass ctrlKey manually in place of "e" */
